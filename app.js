@@ -2,6 +2,8 @@
 const EXAM_DURATION_SECONDS = 60 * 60; // 60 minutes (change as needed)
 const QUESTIONS_PER_ATTEMPT = null; // null = use all; or set a number to sample
 let timeLeft = EXAM_DURATION_SECONDS;
+const QUESTIONS_PER_ATTEMPT = 5; // Change this to any number you want
+
 
 // State
 let questions = [];
