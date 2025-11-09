@@ -22,8 +22,13 @@ function shuffle(array) {
 
 // Load and init
 async function loadQuestions() {
-  const res = await fetch('questions.json');
-  const raw = await res.json();
+  try {
+    const res = await fetch('questions.json?v=' + Date.now());
+    const raw = await res.json();
+  } catch (err) {
+    document.getElementById('question').innerText = "Failed to load questions.";
+    console.error("Error loading questions:", err);
+  }
 
   // Shuffle entire question bank
   let pool = shuffle([...raw]);
