@@ -23,7 +23,7 @@ function shuffle(array) {
 // Load and init
 async function loadQuestions() {
   try {
-    const res = await fetch('questions.json?v=' + Date.now());
+    const res = await fetch('questions.json');
     const raw = await res.json();
   } catch (err) {
     document.getElementById('question').innerText = "Failed to load questions.";
