@@ -1,6 +1,6 @@
 // Configuration
 const EXAM_DURATION_SECONDS = 105 * 60; // 60 minutes (change as needed)
-const QUESTIONS_PER_ATTEMPT = null; // null = use all; or set a number to sample
+const QUESTIONS_PER_ATTEMPT = 60; // null = use all; or set a number to sample
 let timeLeft = EXAM_DURATION_SECONDS;
 const QUESTIONS_PER_ATTEMPT = 60; // Change this to any number you want
 
@@ -25,18 +25,17 @@ async function loadQuestions() {
   try {
     const res = await fetch('questions.json');
     const raw = await res.json();
-    const rawCopy = [...raw];
   } catch (err) {
     document.getElementById('question').innerText = "Failed to load questions.";
     console.error("Error loading questions:", err);
   }
 
   // Shuffle entire question bank
-  const pool = shuffle(rawCopy);
+  let pool = shuffle([...raw]);
 
   // Optionally sample a subset each attempt
   if (typeof QUESTIONS_PER_ATTEMPT === 'number' && QUESTIONS_PER_ATTEMPT > 0) {
-    pool = pool.slice(0, Math.min(QUESTIONS_PER_ATTEMPT, pool.length);
+    pool = pool.slice(0, Math.min(QUESTIONS_PER_ATTEMPT, pool.length));
   }
 
   // Shuffle options within each question
