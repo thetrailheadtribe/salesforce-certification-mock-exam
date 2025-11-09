@@ -29,8 +29,8 @@ async function loadQuestions() {
   let pool = shuffle([...raw]);
 
   // Optionally sample a subset each attempt
-  if (typeof QUESTIONS_PER_ATTEMPT === 'number' && QUESTIONS_PER_ATTEMPT > 0) {
-    pool = pool.slice(0, Math.min(QUESTIONS_PER_ATTEMPT, pool.length));
+  if (QUESTIONS_PER_ATTEMPT && QUESTIONS_PER_ATTEMPT < pool.length) {
+    pool = pool.slice(0, QUESTIONS_PER_ATTEMPT);
   }
 
   // Shuffle options within each question
