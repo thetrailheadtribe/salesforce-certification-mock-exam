@@ -20,7 +20,7 @@ function shuffle(array) {
 
 // Load and init
 async function loadQuestions() {
-  const res = await fetch('questions.json');
+  const res = await fetch('questions.json' + Date.now());
   const raw = await res.json();
 
   // Shuffle entire question bank
